@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "helpers.h"
 
 
@@ -56,6 +57,7 @@ int menu(){
 }
 
 int recordQuestions(){
+	char op='S';
 	struct question question;
 
 	printf("Insira os dados da sua pergunta na seguinte ordem\n");
@@ -64,25 +66,40 @@ int recordQuestions(){
 	printf("3 - As alternativas (ex: A - Qual a capital do Brasil?) \n");
 	printf("SOMENTE QUATRO ALTERNATIVAS SÃO ACEITAS\n\n");
 
-    setbuf(stdin, NULL);
-	printf("Insira a sua pergunta\n");
-	fgets(question.questionDescription, sizeof(question.questionDescription), stdin);
-
-    setbuf(stdin, NULL);
-	printf("Insira a alternativa correta\n");
-	question.correctAlternative = getchar();
-
-
-	printf("Agora, insira as alternativas:\n");
-	cleanBuffer();
-	for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
-	{
-		printf("Caractere da Alternativa:\n");
-		question.alternative[index].option = getchar();		
-		printf("Alternativa:\n");
+	while(toupper(op) == 'S'){
+		printf("Insira a sua pergunta\n");
 		cleanBuffer();
-		fgets(question.alternative[index].nameAlternative, sizeof(question.alternative[index].nameAlternative), stdin);
-		
+		fgets(question.questionDescription, sizeof(question.questionDescription), stdin);
+
+	    setbuf(stdin, NULL);
+		printf("Insira a alternativa correta\n");
+		question.correctAlternative = getchar();
+
+
+		printf("Agora, insira as alternativas:\n");
+		cleanBuffer();
+		for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
+		{
+			printf("Caractere da Alternativa:\n");
+			question.alternative[index].option = getchar();		
+			printf("Alternativa:\n");
+			cleanBuffer();
+			fgets(question.alternative[index].nameAlternative, sizeof(question.alternative[index].nameAlternative), stdin);
+			
+		}
+		printf("Pergunta feita:\n ");
+		printf("Pergunta: %s\n", question.questionDescription);
+		printf("Alternativa correta: %c\n", question.correctAlternative);
+		printf("alternativas:\n");
+		for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
+		{
+			printf("%c - %s", question.alternative[index].option, question.alternative[index].nameAlternative);
+		}
+		generalText("PERGUNTA CRIADA COM SUCESSO!");
+		printf("Deseja criar outra pergunta? [S]im \\ [N]ao\n");
+		op = getchar();
 	}
+
+
 }
 	
