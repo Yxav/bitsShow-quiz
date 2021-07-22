@@ -6,6 +6,12 @@ void generateDashes(int numberDashes){
 	printf("\n");
 }
 
+void cleanBuffer(void) // setbuf doesn't working in some cases;
+{
+	char c;
+	while ((c = getchar()) != '\n' && c != EOF);
+}
+
 
 void greeting() {
 	printf("\033[1;32m");
@@ -24,17 +30,26 @@ void farewell() {
 }
 
 
-int generateMenus(int numOptions, char **texts){
+int generateMainMenu(int numOptions, char **texts){
 	int op=0;
+    setbuf(stdin, NULL);
 	generateDashes(35);
 	for (int index = 0; index < numOptions; ++index)
 	{
-		printf("%d - %s\n", index, texts[index]);	
+		printf("%d - %s\n", index + 1, texts[index]);	
 	}
 	printf("\033[1;32mSua opcao eh? \033[0m");
 	scanf("%d", &op);
 	generateDashes(35);
 	return op;
+}
+
+void generalText(char *text){
+	printf("\033[1;32m");
+	generateDashes(35);
+	printf("|%s |\n", text);
+	generateDashes(35);
+	printf("\033[0m");
 }
 
 
