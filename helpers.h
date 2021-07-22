@@ -7,14 +7,22 @@ void generateDashes(int numberDashes){
 }
 
 
-void hello_greeting() {
+void greeting() {
 	printf("\033[1;32m");
 	generateDashes(35);
 	printf("|Seja bem vindo ao show do bilhao |\n");
 	generateDashes(35);
 	printf("\033[0m");
-
 }
+
+void farewell() {
+	printf("\033[1;32m");
+	generateDashes(35);
+	printf("|Obrigado por jogar SHOW DO BILHAO |\n");
+	generateDashes(35);
+	printf("\033[0m");
+}
+
 
 int generateMenus(int numOptions, char **texts){
 	int op=0;

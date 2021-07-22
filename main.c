@@ -6,8 +6,9 @@ int menu();
 
 int main(int argc, char const *argv[])
 {
-	hello_greeting();
+	greeting();
 	menu();
+	farewell();
 	return 0;
 }
 
@@ -29,6 +30,8 @@ int menu(){
 			break;
 		default: 
 			printf("\033[1;31mOPCAO INVALIDA\n\033[0m");
+
+
 	return 0;
 }
 
