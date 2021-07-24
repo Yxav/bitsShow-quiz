@@ -52,7 +52,10 @@ int menu(){
 			}
 
 			points = playQuiz(points);
-			printf("Voce fez %d pontos\n\n", points);
+			printf("\033[1;35mVoce fez %d pontos\n\n\033[0m", points);
+			
+			printf("\033[1;35mO que resulta em B$%.2f reais de bits imaginarios\n\n\033[0m", points * (0.15));
+
 
 			break;
 		case 3: 
@@ -130,11 +133,11 @@ int playQuiz(int points){
 	for (int indexQuestion = 0; indexQuestion < questionController; ++indexQuestion)
 	{
 		printf("Pergunta numero: %d \n", indexQuestion+1);
-		printf("%s\n", questions[indexQuestion].questionDescription);
-		printf("alternativas:\n");
+		printf("\033[1;33m%s\n\033[0m", questions[indexQuestion].questionDescription);
+		printf("Alternativas:\n");
 		for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
 		{
-			printf("%c - %s", questions[indexQuestion].alternative[index].option, questions[indexQuestion].alternative[index].nameAlternative);
+			printf("\033[1;36m %c - %s\033[0m", questions[indexQuestion].alternative[index].option, questions[indexQuestion].alternative[index].nameAlternative);
 		}
 
 		printf("Qual a alternativa correta?\n\n");
