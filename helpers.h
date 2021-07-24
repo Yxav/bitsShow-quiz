@@ -32,13 +32,14 @@ void farewell() {
 
 int generateMainMenu(int numOptions, char **texts){
 	int op=0;
-    setbuf(stdin, NULL);
+
 	generateDashes(35);
 	for (int index = 0; index < numOptions; ++index)
 	{
 		printf("%d - %s\n", index + 1, texts[index]);	
 	}
 	printf("\033[1;32mSua opcao eh? \033[0m");
+	setbuf(stdin, NULL);
 	scanf("%d", &op);
 	generateDashes(35);
 	return op;
@@ -51,18 +52,3 @@ void generalText(char *text){
 	generateDashes(35);
 	printf("\033[0m");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
