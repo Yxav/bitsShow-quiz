@@ -11,9 +11,12 @@
 int menu();
 int recordQuestions();
 void exitGame();
+int playQuiz(int points);
+
 
 Question questions[10];
-int questionController=0;
+int questionController=0, points=0;
+char currentAlternative;
 
 int main(int argc, char const *argv[])
 {
@@ -29,16 +32,12 @@ int menu(){
 	char *words[] = {"Gravar perguntas", "Jogar", "Ver records", "Sair"};
 	printf("O que você deseja fazer?\n");
 	op = generateMainMenu(4, words);
-	
+
 	if(1 > op || op > 4) {
 		printf("\033[1;31mOPCAO INVALIDA\n\033[0m");
 		printf("O que você deseja fazer?\n");
 		menu();
-
-
 	}
-	printf("Sua opcao foi %d\n", op);
-
 
 		switch(op){
 		case 1: 
@@ -46,6 +45,15 @@ int menu(){
 			recordQuestions();
 			break;
 		case 2:
+			if(questionController==0){
+				printf("\033[1;31mVOCE NAO TEM PERGUNTAS GRAVADAS\033[0m\n\n");
+				recordQuestions();
+				break;
+			}
+
+			points = playQuiz(points);
+			printf("Voce fez %d pontos\n\n", points);
+
 			break;
 		case 3: 
 			break;
@@ -107,14 +115,44 @@ int recordQuestions(){
 		questionController++;
 		generalText("PERGUNTA CRIADA COM SUCESSO!");
 
+
 		printf("Deseja criar outra pergunta? [S]im \\ [N]ao\n");
 		op = getchar();
 
 	}
+
 	printf("\033[1;33mVoltando para o menu......\n\033[0m");
 	menu();
 }
 
+int playQuiz(int points){
+
+	for (int indexQuestion = 0; indexQuestion < questionController; ++indexQuestion)
+	{
+		printf("Pergunta numero: %d \n", indexQuestion+1);
+		printf("%s\n", questions[indexQuestion].questionDescription);
+		printf("alternativas:\n");
+		for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
+		{
+			printf("%c - %s", questions[indexQuestion].alternative[index].option, questions[indexQuestion].alternative[index].nameAlternative);
+		}
+
+		printf("Qual a alternativa correta?\n\n");
+		cleanBuffer();
+		currentAlternative = getchar();
+
+		if (currentAlternative == questions[indexQuestion].correctAlternative){
+			points++;
+			printf("\033[1;32mPARABENS, VOCE ACERTOU!\n\033[0m");
+		} else {
+			printf("\033[1;31mQUE PENA! VOCE ERROU!\n\033[0m");
+			printf("A alternativa correta é: %c!\n", questions[indexQuestion].correctAlternative);
+		}
+	}
+
+	return points;
+
+}
 
 void exitGame() {
 
