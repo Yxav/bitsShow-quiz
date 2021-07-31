@@ -87,25 +87,26 @@ int recordQuestions(){
 		cleanBuffer();
 		fgets(question.questionDescription, sizeof(question.questionDescription), stdin);
 
-		printf("Insira a alternativa correta\n");
-		question.correctAlternative = getchar();
-		
-		while(question.correctAlternative < 65 || question.correctAlternative > 100) {
-			printf("\033[1;31mPor favor, caracteres entre 'a' e 'd'\n\033[0m");
-			cleanBuffer();
-			question.correctAlternative = getchar();
-		}
 
 
 		printf("Agora, insira as alternativas:\n");
-		cleanBuffer();
 		for (int index = 0; index < MAX_QUESTIONS_ALTERNATIVES; ++index)
 		{
 			question.alternative[index].option = index + 65;	
-			printf("Alternativa:\n");
+			printf("%c - Alternativa:\n", question.alternative[index].option);
 			fgets(question.alternative[index].nameAlternative, sizeof(question.alternative[index].nameAlternative), stdin);
 			
 		}
+
+		printf("Insira a alternativa correta\n");
+		question.correctAlternative = toupper(getchar());
+		
+		while(question.correctAlternative < 65 || question.correctAlternative > 68) {
+			printf("\033[1;31mPor favor, caracteres entre 'a' e 'd'\n\033[0m");
+			cleanBuffer();
+			question.correctAlternative = toupper(getchar());
+		}
+
 		printf("Pergunta feita:\n ");
 		printf("Pergunta: %s\n", question.questionDescription);
 		printf("Alternativa correta: %c\n", question.correctAlternative);
@@ -120,6 +121,7 @@ int recordQuestions(){
 
 
 		printf("Deseja criar outra pergunta? [S]im \\ [N]ao\n");
+		cleanBuffer();
 		op = getchar();
 
 	}
@@ -142,7 +144,7 @@ int playQuiz(int points){
 
 		printf("Qual a alternativa correta?\n\n");
 		cleanBuffer();
-		currentAlternative = getchar();
+		currentAlternative = toupper(getchar());
 
 		if (currentAlternative == questions[indexQuestion].correctAlternative){
 			points++;
@@ -164,7 +166,7 @@ void exitGame() {
 	printf("\033[1;31mVOCE DESEJA REALMENTE SAIR?: [S]im \\ [N]ao  \033[0m");
 	op= getchar();
 		
-	if (toupper(op) == 'S') exit(0); 
+	if (toupper(op) == 'S') farewell(); 
 
 	menu();
 }
