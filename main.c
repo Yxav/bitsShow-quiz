@@ -33,7 +33,7 @@ int menu(){
 	printf("O que você deseja fazer?\n");
 	op = generateMainMenu(3, words);
 
-	if(1 > op || op > 4) {
+	if(1 > op || op > 3) {
 		printf("\033[1;31mOPCAO INVALIDA\n\033[0m");
 		printf("O que você deseja fazer?\n");
 		menu();
