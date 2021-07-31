@@ -29,9 +29,9 @@ int main(int argc, char const *argv[])
 
 int menu(){
 	int op;
-	char *words[] = {"Gravar perguntas", "Jogar", "Ver records", "Sair"};
+	char *words[] = {"Gravar perguntas", "Jogar", "Sair"};
 	printf("O que você deseja fazer?\n");
-	op = generateMainMenu(4, words);
+	op = generateMainMenu(3, words);
 
 	if(1 > op || op > 4) {
 		printf("\033[1;31mOPCAO INVALIDA\n\033[0m");
@@ -59,10 +59,7 @@ int menu(){
 
 			break;
 		case 3: 
-			break;
-		case 4: 
 			exitGame();
-			break;
 		default: 
 			break;
 
