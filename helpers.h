@@ -26,7 +26,7 @@ void farewell() {
 	generateStyle(35, '-');
 	printf("|Obrigado por jogar SHOW DOS BITS |\n");
 	generateStyle(35, '-');
-	printf("\033[0m");
+	printf("\033[0m\n\n\n");
 	exit(0);
 }
 
