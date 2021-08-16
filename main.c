@@ -1,5 +1,8 @@
 #define MAX_QUESTIONS_ALTERNATIVES 4
 #define MAX_QUESTIONS 10
+#define INITIAL_OPTION 65
+#define END_OPTION 68
+
 
 
 #include <stdio.h>
@@ -11,12 +14,12 @@
 int menu();
 int recordQuestions();
 void exitGame();
-int playQuiz(int points);
+int playQuiz();
 
 
-Question questions[10];
+Question questions[MAX_QUESTIONS];
 int questionController=0, points=0;
-char currentAlternative;
+
 
 int main(int argc, char const *argv[])
 {
@@ -51,7 +54,7 @@ int menu(){
 				break;
 			}
 
-			points = playQuiz(points);
+			points = playQuiz();
 			printf("\033[1;35mVoce fez %d pontos\n\n\033[0m", points);
 			
 			printf("\033[1;35mO que resulta em B$%.2f reais de bits imaginarios\n\n\033[0m", points * (0.15));
@@ -98,7 +101,7 @@ int recordQuestions(){
 		printf("Insira a alternativa correta\n");
 		question.correctAlternative = toupper(getchar());
 		
-		while(question.correctAlternative < 65 || question.correctAlternative > 68) {
+		while(question.correctAlternative < INITIAL_OPTION || question.correctAlternative > END_OPTION) {
 			printf("\033[1;31mPor favor, caracteres entre 'a' e 'd'\n\033[0m");
 			cleanBuffer();
 			question.correctAlternative = toupper(getchar());
@@ -127,7 +130,8 @@ int recordQuestions(){
 	menu();
 }
 
-int playQuiz(int points){
+int playQuiz(){
+	char currentAlternative;
 
 	for (int indexQuestion = 0; indexQuestion < questionController; ++indexQuestion)
 	{
