@@ -2,8 +2,6 @@
 Um jogo de perguntas e respostas
 
 
-![GitHub repo size](https://img.shields.io/github/repo-size/yxav/bitsShow-quiz?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/yxav/bitsShow-quiz?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Language-C-blue?style=for-the-badge&logo=appveyor)
 
 
@@ -37,5 +35,6 @@ gcc main.c -o main
   * Só é possível jogar, se houver perguntas gravadas.
   
 ### É NECESSÁRIO GRAVAR NOVAS PERGUNTAS A CADA EXECUÇÃO DO PROGRAMA
+![Repl.it](https://img.shields.io/badge/Repl.it-%230D101E.svg?style=for-the-badge&logo=replit&logoColor=white)
 
-[![Run on Repl.it](https://repl.it/badge/github/huangsam/ultimate-python)](https://replit.com/@YuriXavier/bitsShow/)
+[Clique aqui para rodar no Repl.it](https://replit.com/@YuriXavier/bitsShow/)
