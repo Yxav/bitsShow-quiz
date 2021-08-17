@@ -4,7 +4,6 @@
 #define END_OPTION 68
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -78,8 +77,8 @@ int recordQuestions(){
 
 	printf("\033[1;35mInsira os dados da sua pergunta na seguinte ordem\n");
 	printf("1 - Pergunta\n");
-	printf("2 - Alternativa correta (somente letras serão aceitas)\n");
-	printf("3 - As alternativas (ex: A - Qual a capital do Brasil?) \n");
+	printf("2 - As alternativas (ex: A - Qual a capital do Brasil?) \n");
+	printf("3 - Alternativa correta (somente letras serão aceitas)\n");
 	printf("SOMENTE QUATRO ALTERNATIVAS SÃO ACEITAS\033[0m\n\n");
 
 	while(toupper(op) == 'S'){
